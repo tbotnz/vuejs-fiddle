@@ -1,0 +1,246 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="[[ url_for('static', filename='css/netpalm.css') ]]">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-lg-12">
+                <form>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">netpalm herpa derpa</h5>
+                            <p class="card-text">retrieves operatinal or configuration state from devices</p>
+
+                            <div id="np" class="form-group row">
+                                <div class="col-sm-6">
+                                    <label for="exampleFormControlTextarea1">enter commands </label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="8"
+                                        placeholder="show ip int brief" v-model="commands"></textarea>
+                                </div>
+
+                                <div class="col-sm-6">
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-6">
+                                            <label for="inputPassword" class="col-form-label">enter network host
+                                            </label>
+                                            <input class="form-control" id="inputPassword" placeholder="192.168.1.1"
+                                                v-model="host">
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <label for="inputPassword" class="col-form-label">enter port </label>
+                                            <input class="form-control" id="inputPassword" placeholder="port"
+                                                v-model="port">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+
+                                        <div class="col-sm-4">
+                                            <label for="inputPassword" class="col-form-label">username</label>
+                                            <input class="form-control" id="inputPassword" placeholder="username"
+                                                v-model="username">
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <label for="inputPassword" class="col-form-label">password</label>
+                                            <input type="password" class="form-control" id="inputPassword"
+                                                placeholder="password" v-model="password">
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <label for="inputPassword" class="col-form-label">driver</label>
+                                            <select class="form-control" v-model="driver">
+                                                <option disabled value="">select driver</option>
+                                                <option>a10</option>
+                                                <option>accedian</option>
+                                                <option>adtran_os</option>
+                                                <option>alcatel_aos</option>
+                                                <option>alcatel_sros</option>
+                                                <option>apresia_aeos</option>
+                                                <option>arista_eos</option>
+                                                <option>aruba_os</option>
+                                                <option>avaya_ers</option>
+                                                <option>avaya_vsp</option>
+                                                <option>broadcom_icos</option>
+                                                <option>brocade_fastiron</option>
+                                                <option>brocade_netiron</option>
+                                                <option>brocade_nos</option>
+                                                <option>brocade_vdx</option>
+                                                <option>brocade_vyos</option>
+                                                <option>checkpoint_gaia</option>
+                                                <option>calix_b6</option>
+                                                <option>centec_os</option>
+                                                <option>ciena_saos</option>
+                                                <option>cisco_asa</option>
+                                                <option>cisco_ios</option>
+                                                <option>cisco_nxos</option>
+                                                <option>cisco_s300</option>
+                                                <option>cisco_tp</option>
+                                                <option>cisco_wlc</option>
+                                                <option>cisco_xe</option>
+                                                <option>cisco_xr</option>
+                                                <option>cloudgenix_ion</option>
+                                                <option>coriant</option>
+                                                <option>dell_dnos9</option>
+                                                <option>dell_force10</option>
+                                                <option>dell_os6</option>
+                                                <option>dell_os9</option>
+                                                <option>dell_os10</option>
+                                                <option>dell_powerconnect</option>
+                                                <option>dell_isilon</option>
+                                                <option>dlink_ds</option>
+                                                <option>endace</option>
+                                                <option>eltex</option>
+                                                <option>eltex_esr</option>
+                                                <option>enterasys</option>
+                                                <option>extreme</option>
+                                                <option>extreme_ers</option>
+                                                <option>extreme_exos</option>
+                                                <option>extreme_netiron</option>
+                                                <option>extreme_nos</option>
+                                                <option>extreme_slx</option>
+                                                <option>extreme_vdx</option>
+                                                <option>extreme_vsp</option>
+                                                <option>extreme_wing</option>
+                                                <option>f5_ltm</option>
+                                                <option>f5_tmsh</option>
+                                                <option>f5_linux</option>
+                                                <option>flexvnf</option>
+                                                <option>fortinet</option>
+                                                <option>generic</option>
+                                                <option>generic_termserver</option>
+                                                <option>hp_comware</option>
+                                                <option>hp_procurve</option>
+                                                <option>huawei</option>
+                                                <option>huawei_smartax</option>
+                                                <option>huawei_olt</option>
+                                                <option>huawei_vrpv8</option>
+                                                <option>ipinfusion_ocnos</option>
+                                                <option>juniper</option>
+                                                <option>juniper_junos</option>
+                                                <option>juniper_screenos</option>
+                                                <option>keymile</option>
+                                                <option>keymile_nos</option>
+                                                <option>linux</option>
+                                                <option>mikrotik_routeros</option>
+                                                <option>mikrotik_switchos</option>
+                                                <option>mellanox</option>
+                                                <option>mellanox_mlnxos</option>
+                                                <option>mrv_lx</option>
+                                                <option>mrv_optiswitch</option>
+                                                <option>netapp_cdot</option>
+                                                <option>netgear_prosafe</option>
+                                                <option>netscaler</option>
+                                                <option>nokia_sros</option>
+                                                <option>oneaccess_oneos</option>
+                                                <option>ovs_linux</option>
+                                                <option>paloalto_panos</option>
+                                                <option>pluribus</option>
+                                                <option>quanta_mesh</option>
+                                                <option>rad_etx</option>
+                                                <option>raisecom_roap</option>
+                                                <option>ruckus_fastiron</option>
+                                                <option>ruijie_os</option>
+                                                <option>sixwind_os</option>
+                                                <option>sophos_sfos</option>
+                                                <option>ubiquiti_edge</option>
+                                                <option>ubiquiti_edgeswitch</option>
+                                                <option>ubiquiti_unifiswitch</option>
+                                                <option>vyatta_vyos</option>
+                                                <option>vyos</option>
+                                                <option>watchguard_fireware</option>
+                                                <option>zte_zxros</option>
+                                                <option>yamaha</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group row">
+
+                                        <div class="col-sm-6">
+                                            <label for="inputPassword" class="col-form-label">netpalm api key </label>
+                                            <input class="form-control" id="inputPassword" placeholder="apikey"
+                                                v-model="apikey">
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <label for="inputPassword" class="col-form-label">netpalm server ip </label>
+                                            <input class="form-control" id="inputPassword" placeholder="127.0.0.1:9000"
+                                                v-model="netpalmip">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div id="npexec">
+                                <button v-on:click="execute" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false"
+                                    autocomplete="off">
+                                    execute
+                                </button>
+                            </div>
+
+                            <p style="color: #fff !important;">
+                            <pre style="color: #fff !important;">{{$data | json }}</pre>
+                            </p>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-lg-6-x">
+                <form>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">results</h5>
+                            <p class="card-text">results appear here</p>
+
+                            <div class="form-group row">
+                                <!-- <div class="col-sm-12">
+                                    <label for="exampleFormControlTextarea1">tasks</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                        placeholder="">{{ info.data }}</textarea>
+                                </div> -->
+                                <div class="col-sm-12">
+                                    <label for="exampleFormControlTextarea1">tasks</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                        placeholder=""></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <label for="exampleFormControlTextarea1">data</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="12"
+                                        placeholder=""></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="[[ url_for('static', filename='js/netpalm-demo.js') ]]"></script>
+</body>
+
+</html>
